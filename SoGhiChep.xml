@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PhieuInKhaoSatKhachHang" language="groovy" pageWidth="3930" pageHeight="595" orientation="Landscape" columnWidth="3890" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dceebbde-cc88-470e-9416-20919de43beb">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Mogo"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.jasperserver.url" value="http://222.252.21.66:8081/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="ehosuser"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/hcv/SoGhiChepDienTuDichVuXetNghiemHCV"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/hcv/SoGhiChepDienTuDichVuXetNghiemHCV_files/SoGhiChepDienTuDichVuXetNghiemHCV_"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="customer_name" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="branch_code" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="from" class="java.lang.Long"/>
+	<parameter name="to" class="java.lang.Long"/>
+	<queryString language="MongoDbQuery">
+		<![CDATA[{
+   "runCommand":{
+      "aggregate":"customer_hcv_index",
+      "pipeline":[
+        {
+            $match:{
+                $P!{customer_name}
+				current_day_time: {"$gte": $P{from}, "$lte": $P{to}},
+				$P!{branch_code}
+            }
+         }
+      ]
+   }
+}]]>
+	</queryString>
+	<field name="_id" class="org.bson.types.ObjectId"/>
+	<field name="accept_phone_number" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<field name="city.city_code" class="java.lang.String"/>
+	<field name="city.city_id" class="java.lang.Double"/>
+	<field name="city.city_name" class="java.lang.String"/>
+	<field name="city_name" class="java.lang.String"/>
+	<field name="created_at" class="java.lang.Double"/>
+	<field name="current_day_time" class="java.lang.Double"/>
+	<field name="drug_use" class="java.lang.String"/>
+	<field name="full_name" class="java.lang.String"/>
+	<field name="gender" class="java.lang.String"/>
+	<field name="go_survey" class="java.lang.String"/>
+	<field name="hiv_treatment" class="java.lang.String"/>
+	<field name="identifiers" class="java.lang.String"/>
+	<field name="income" class="java.lang.String"/>
+	<field name="job" class="java.lang.String"/>
+	<field name="kit_test_hiv" class="java.lang.String"/>
+	<field name="last_prostitution" class="java.lang.String"/>
+	<field name="last_test_viral_infection" class="java.lang.String"/>
+	<field name="literacy" class="java.lang.String"/>
+	<field name="marital_status" class="java.lang.String"/>
+	<field name="men_sex_men" class="java.lang.String"/>
+	<field name="methadone" class="java.lang.String"/>
+	<field name="other_gender" class="java.lang.String"/>
+	<field name="phone_number" class="java.lang.String"/>
+	<field name="prostitution" class="java.lang.String"/>
+	<field name="test_hcv" class="java.lang.String"/>
+	<field name="test_hcv_choice" class="java.lang.String"/>
+	<field name="test_hcv_transport" class="java.lang.String"/>
+	<field name="updated_at" class="java.lang.Double"/>
+	<field name="viral_infection" class="java.lang.String"/>
+	<field name="year_of_birth" class="java.lang.Double"/>
+	<field name="want_test_viral_infection" class="java.lang.String"/>
+	<field name="want_hiv_treatment" class="java.lang.String"/>
+	<field name="get_hiv_treatment" class="java.lang.String"/>
+	<field name="test_hcv_choice_other" class="java.lang.String"/>
+	<field name="test_results" class="java.lang.String"/>
+	<field name="note" class="java.lang.String"/>
+	<field name="print" class="java.lang.String"/>
+	<field name="status.status_name" class="java.lang.String"/>
+	<field name="screening_test_results" class="java.lang.String"/>
+	<field name="confirmation_test" class="java.lang.String"/>
+	<field name="results_xnkd" class="java.lang.String"/>
+	<field name="reason_no_xnkd" class="java.lang.String"/>
+	<field name="treatment" class="java.lang.String"/>
+	<field name="place_of_treatment" class="java.lang.String"/>
+	<field name="reason_no_treatment" class="java.lang.String"/>
+	<field name="confirmation_test_other" class="java.lang.String"/>
+	<field name="reason_no_xnkd_other" class="java.lang.String"/>
+	<field name="place_of_treatment_other" class="java.lang.String"/>
+	<field name="reason_no_treatment_other" class="java.lang.String"/>
+	<field name="risk_six_month_over" class="java.lang.String"/>
+	<field name="support_source_xnkd" class="java.lang.String"/>
+	<field name="support_source_xnkd_other" class="java.lang.String"/>
+	<field name="support_source_treatment" class="java.lang.String"/>
+	<field name="support_source_treatment_other" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="3220" height="20" uuid="ca69a50c-c237-4a3f-b536-a7939611a63c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SỔ GHI CHÉP ĐIỆN TỬ - DỊCH VỤ XÉT NGHIỆM HCV"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="20" width="3220" height="20" uuid="ad0fdfd8-ddb8-4587-854d-b157c1d87f0f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(được sử dụng bởi các tổ chức cộng đồng hoặc các phòng khám cung cấp dịch vụ xét nghiệm HCV)"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="180" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="30" width="100" height="150" uuid="aa380563-c570-44db-af4b-0ac49885ae76"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Họ tên]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1240" y="30" width="140" height="150" uuid="69812c77-bda8-4a1f-9c41-ea94af5032e6"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B2. Bạn tự xác định/cảm nhận/ý thức giới tính của mình là gì?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="500" y="30" width="80" height="150" uuid="47b11e57-ac3f-4630-9e2e-30f9742218b8"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A1.Năm sinh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="860" y="30" width="140" height="150" uuid="27be84e9-0ef2-48f2-8cd7-cb6818c91876"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A4.Trong 6 tháng qua, bạn có nguy cơ nào sau đây? (Bạn có thể đánh dấu một hoặc nhiều lựa chọn)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1000" y="30" width="130" height="150" uuid="f73f9d68-d42e-45a7-bf13-934026bd0742"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A5.Bạn có thể cung cấp số điện thoại di động để chúng tôi có thể liên hệ và chuyển sinh phẩm xét nghiệm không?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="660" y="30" width="120" height="150" uuid="41b013e8-2255-4a4e-912a-bab516559c85"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A2.Chẩn đoán / điều trị vi rút viêm gan C]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="780" y="30" width="80" height="150" uuid="21db6388-a4bf-40f9-9d98-93926cdbe381"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A3.Lần gần nhất thực hiện xét nghiệm HCV?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="30" y="30" width="50" height="150" uuid="cad3cdd1-05c7-42f0-a307-6c5dcef5c8a8"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[S0.Tỉnh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1480" y="30" width="100" height="150" uuid="1604cb72-abd7-440a-8f5f-9715c6b3130a"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B4. Hiện tại bạn có đang điều trị nghiện ma tuý bằng Methadone không?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="30" width="80" height="150" uuid="5f901f3a-d493-4913-87f3-3202da842a2a"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trạng thái]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="30" height="150" uuid="2d41c8df-6324-4c45-8823-ec4b6b315708">
+					<property name="net.sf.jasperreports.export.xls.auto.filter" value="Start"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[STT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1580" y="30" width="110" height="150" uuid="40aeb470-4e30-4586-8b9b-20d137657456"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B5. Trong 12 tháng qua, bạn có quan hệ tình dục qua đường hậu môn với bạn tình nam nào không?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2800" y="30" width="60" height="150" uuid="81fe799e-1c87-4c43-a82f-d1c54d600846">
+					<property name="net.sf.jasperreports.export.xls.auto.filter" value="End"/>
+				</reportElement>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="30" width="80" height="150" uuid="84dea86c-13cf-4c94-a555-08bf2543b620"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A6.Số điện thoại]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="30" width="80" height="150" uuid="fde2d62a-71ea-4bca-a564-69cceaaffec1"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày sàng lọc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1380" y="30" width="100" height="150" uuid="685dd8d4-166d-4ea0-8bd5-3695e60cab0a"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B3. Bạn có Tiêm chích ma túy ít nhất 1 lần trong vòng 1 tháng qua không?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1130" y="30" width="110" height="150" uuid="396f2dcb-3ff1-46bf-b4f5-43459287a5f3"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B1. Giới tính sinh học lúc sinh ra của bạn là gì? (giới tính ghi trên giấy khai sinh gốc)?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="1060" height="30" uuid="d04ecd42-9bda-4933-8c9c-b2c18a9fe91d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Câu hỏi sàng lọc và đồng thuận								]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1050" y="0" width="2170" height="30" uuid="d9da80ea-57ac-4133-b024-730e1240bb15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thông tin chung và hành vi nguy cơ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1690" y="30" width="110" height="150" uuid="0af0d98c-74ed-4905-943d-22782228e9c4"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B6.Bạn đã bao giờ quan hệ tình dục để đổi lấy tiền, quà hoặc tài sản chưa?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1800" y="30" width="100" height="150" uuid="823d5538-6b47-4eaf-9e74-905ad62e0bd1"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B7. Bạn đã được chẩn đoán hoặc hiện đang điều trị HIV?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="30" width="80" height="150" uuid="846084fb-03f7-455a-b2a4-e1d8c65bc48c"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Địa chỉ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1900" y="30" width="100" height="150" uuid="3ff359b5-a96d-4f91-bf0d-a3780c812b3f"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B8. Bạn lựa chọn loại sinh phẩm Tự xét nghiệm viêm gan C nào?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2000" y="30" width="100" height="150" uuid="aaf1ffe3-d825-4486-afbc-392a79147f08"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B9. Bạn lựa chọn nhận bộ sinh phẩm tự XN vêm gan C bằng cách nào]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2700" y="30" width="100" height="150" uuid="30cca7cf-8418-427b-8217-6580b346bb1f"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ghi chú]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="30" width="80" height="150" uuid="023eb19e-04d5-41a8-a2c0-d6afe2c9da01"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã số]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2100" y="30" width="90" height="150" uuid="a7451403-33c8-451d-a5e0-eeb9779f048f"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B12. Kết quả tự xét nghiệm viêm gan C ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2190" y="30" width="70" height="150" uuid="e7cd403d-dd8c-433f-adf8-dd96e7152a05"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B13. Xét nghiệm khẳng định]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2260" y="30" width="60" height="150" uuid="eb7d190e-9650-498a-877c-d91d80ccd364"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B14. Nơi XNKĐ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2320" y="30" width="60" height="150" uuid="c2664f43-d101-42d8-9d89-a23a65e6bbbd"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B15. Kết quả XNKĐ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2380" y="30" width="90" height="150" uuid="f9ef1cdf-bb9c-4e8b-a97b-fc37833ce7d9"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B16. Nguồn hỗ trợ XNKĐ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2470" y="30" width="80" height="150" uuid="cdac0a2f-a9d7-4792-a821-15768b372cbb"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B17. Điều trị]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2550" y="30" width="60" height="150" uuid="b37c3761-7dc7-4cc3-a9b2-3d1b318b8ab7"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B19. Nơi điều trị]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2610" y="30" width="90" height="150" uuid="9538d440-f841-47af-9a5a-7c0351c455bd"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B20. Nguồn hỗ trợ điều trị viêm gan C
+]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="30" height="30" uuid="18ae01c7-e2ee-4b79-a592-7f668220585a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="30" y="0" width="50" height="30" uuid="c448679f-adc0-481c-a464-e6b249999b54"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{city_name}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="160" y="0" width="100" height="30" uuid="aa378e97-f598-463d-b4ef-fa7e6cb86666"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{full_name}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="340" y="0" width="80" height="30" uuid="3f091d85-4862-452b-a737-576ec9ce2d60"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{phone_number}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="420" y="0" width="80" height="30" uuid="10d8375f-6af8-4cf8-93ab-7c2412a4b321"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new Date((long)$F{current_day_time}*1000)).toString()]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="500" y="0" width="80" height="30" uuid="b448ad82-8db0-4b4a-acc7-d2d03d6e9d30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{year_of_birth}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="580" y="0" width="80" height="30" uuid="081b7ffd-2d60-4933-ad3d-fb8b0fc333ea"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status.status_name}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="660" y="0" width="120" height="30" uuid="91ef83aa-a0a0-4e76-9cd0-5b1c0045caf1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{viral_infection}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="780" y="0" width="80" height="30" uuid="ee43b77a-62f8-44d1-a840-15484a149436"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{last_test_viral_infection}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="860" y="0" width="140" height="30" uuid="ed5eef3d-aed3-4824-9f35-971577b807d7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{risk_six_month_over}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1000" y="0" width="130" height="30" uuid="0c363c63-18aa-43f5-8eab-24cced91e330"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accept_phone_number}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1130" y="0" width="110" height="30" uuid="83442cab-e06a-4d40-bc72-49dc1ebeb4e1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1240" y="0" width="140" height="30" uuid="650dc76e-4167-443f-921d-dd1b920a5619"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{other_gender}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1380" y="0" width="100" height="30" uuid="beb16271-51b1-4deb-a532-f6fb7c1269b0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{drug_use}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1480" y="0" width="100" height="30" uuid="e629e8d1-68db-42ed-910f-9165003afc38"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{methadone}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1580" y="0" width="110" height="30" uuid="3cdcda70-6ce0-443f-88ce-f09b65ad3cb7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{men_sex_men}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1690" y="0" width="110" height="30" uuid="4b7a08fd-1de0-4a61-bc6b-add9af770621"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prostitution}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1800" y="0" width="100" height="30" uuid="c79b6dd6-bf3b-4acf-aee4-4f367bcc390e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hiv_treatment}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2800" y="0" width="60" height="30" uuid="d7446f2f-ec37-4596-9693-ba1b53ef29c5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{print}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="260" y="0" width="80" height="30" uuid="6ef21e78-bdc3-430b-bd1c-7e8b4fd9d375"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1900" y="0" width="100" height="30" uuid="f0d64391-cc0e-42cd-abcd-ba83e16d8e91"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{test_hcv}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2000" y="0" width="100" height="30" uuid="89690f64-7c0e-4b1b-9a8e-488282cfc7b4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{test_hcv_transport}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2700" y="0" width="100" height="30" uuid="bbd7ecd3-ea69-42c6-9d5d-1e7fc866f4e8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="80" y="0" width="80" height="30" uuid="fa6196f9-4b2b-41cc-8379-6bee67836cc6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{identifiers}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2100" y="0" width="90" height="30" uuid="520f812c-e470-4d18-a0e2-fe84dd5a7f79"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{screening_test_results}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2190" y="0" width="70" height="30" uuid="ae6c1359-c07b-4f14-b664-9c60fd4633fc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{test_results}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2260" y="0" width="60" height="30" uuid="10cddc99-b14f-471a-93f3-4b69c94dc31d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{confirmation_test}.equals("Khác (ghi rõ)") ? $F{confirmation_test_other} : $F{confirmation_test}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2320" y="0" width="60" height="30" uuid="e765e41c-f00a-4972-bab4-83007983ec99"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{results_xnkd}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2380" y="0" width="90" height="30" uuid="0e50242a-b982-4509-ac1a-24196675f40a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{support_source_xnkd}.equals("Khác (ghi rõ)") ? $F{support_source_xnkd_other} : $F{support_source_xnkd}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2470" y="0" width="80" height="30" uuid="7b14f0cf-adcb-4efb-8bbe-e57f9db23a17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{treatment}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2550" y="0" width="60" height="30" uuid="908e78d0-911e-42ce-8c62-e2bd1f07b546"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{place_of_treatment}.equals("Khác (ghi rõ)") ? $F{place_of_treatment_other} : $F{place_of_treatment}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2610" y="0" width="90" height="30" uuid="fbf40cf4-0dd0-4b5a-bea3-8cd4a547d4ed"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{support_source_treatment}.equals("Khác (ghi rõ)") ? $F{support_source_treatment_other} : $F{support_source_treatment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
